@@ -1,0 +1,11 @@
+import pandas as pd
+import os
+
+os.chdir(r'C:\Users\mratna\Downloads\Lacy')
+data_df = pd.read_excel(r'C:\Users\mratna\Downloads\Lacy Subs Data.xlsx',sheet_name='Single Ones')
+grouped_df = data_df.groupby('Shipper_MAD_Code')
+
+for data in grouped_df.Shipper_MAD_Code:
+    #del grouped_df['Shipper_MAD_Code']
+    #.drop('Shipper_MAD_Code',1).reset_index(drop=True)
+    grouped_df.get_group(data[0]).to_excel(data[0]+".xlsx")
